@@ -32,12 +32,14 @@ void putin(Fdimension bits, char *str);
 
 void printbitseq(Fdimension bits);
 
-void shifbits(Fdimension bits, int i, int j, int x);
+void shifbits(Fdimension bits, int i, int j, int x, _Bool cod);
 
-void shiftrows(Fdimension bits);
+void shiftrows(Fdimension bits, int i, int j);
 
-void shiftmatrix(Fdimension bits);
+void shiftmatrix(Fdimension bits, int i);
 
-void shiftcubes(Fdimension bits);
+void shiftcubes(Fdimension bits, int m);
 
 void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x);
+
+Matrix linear_appl;

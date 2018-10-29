@@ -1,6 +1,5 @@
 #include "lib.h"
 
-
 char* getstringfromkeyboard(){ //la funzione prende le stringhe inserite da tastiera (massimo 32 caratteri e le inserisce all'interno del puntatore *str)
     char *str = (char *)malloc(1);
      
@@ -65,7 +64,7 @@ void printbitseq(Fdimension bits){
 
   int u = 0;
 
-  for(int i=0; i<4; i++){
+  for(int i=0; i<4; i++) {
     for(int j=0; j<4; j++){
       for(int x=0; x<4; x++){
         for(int y=0; y<4; y++){
@@ -81,20 +80,96 @@ void printbitseq(Fdimension bits){
 }
 
 //try to implement little function
-void shifbits(Fdimension bits, int i, int j, int x){
+void shifbits(Fdimension bits, int i, int j, int x, _Bool cod){
+
+int app;
+  if(!cod){
+    app = 4-x;
+    printf("%d\n",app);
+  }
+    
 
   Bit bit, bitappo;
 
-  for(int ii=0; ii<x; ii++){
+  for(int ii=0; ii<app; ii++){
     for(int p=0; p<4; p++){
       if(p==0){
-          bitappo.b = bits[i][j][x][0].b;
+          bitappo.b = text[i][j][x][0].b;
       }
       if(p<3){
-          bit.b = bits[i][j][x][p+1].b;
-          bits[i][j][x][p].b = bit.b;
+          bit.b = text[i][j][x][p+1].b;
+          text[i][j][x][p].b = bit.b;
       }else{
-          bits[i][j][x][p].b = bitappo.b;
+          text[i][j][x][p].b = bitappo.b;
+      }
+    }
+  }
+}
+
+void shiftrows(Fdimension bits, int i, int j){
+
+  Vector vector, vectorappo;
+
+  for(int ii=0; ii<j; ii++){
+    for(int z=0; z<4; z++){
+      for(int p=0; p<4; p++){
+        if(z==0){
+            vectorappo[p].b = text[i][j][0][p].b;
+        }
+        if(z<3){
+            vector[p].b = text[i][j][z+1][p].b;
+            text[i][j][z][p].b = vector[p].b;
+        }else{
+            text[i][j][z][p].b = vectorappo[p].b;
+        }
+      }
+    }
+  }
+}
+
+void shiftmatrix(Fdimension bits, int i){
+
+  Matrix matrix, matrixappo;
+
+  for(int ii=0; ii<i; ii++){
+    for(int q=0; q<4; q++){
+      for(int z=0; z<4; z++){
+        for(int p=0; p<4; p++){
+          if(q==0){
+              matrixappo[z][p].b = text[i][0][z][p].b;
+          }
+          if(q<3){
+              matrix[z][p].b = text[i][q+1][z][p].b;
+              text[i][q][z][p].b = matrix[z][p].b;
+          }else{
+              text[i][q][z][p].b = matrixappo[z][p].b;
+          }
+        }
+      }
+    }
+  }
+}
+
+void shiftcubes(Fdimension bits, int m){
+
+  Cube cube, cubeappo;
+
+  for(int ii=0; ii<0; ii++){
+    for(int i=0; i<4; i++){
+      for(int q=0; q<4; q++){
+        for(int z=0; z<4; z++){
+          for(int p=0; p<4; p++){
+            if(i==0){
+                cubeappo[q][z][p].b = text[0][q][z][p].b;
+            }
+            if(i<3){
+                cube[q][z][p].b = text[i+1][q][z][p].b;
+                text[i][q][z][p].b = cube[q][z][p].b;
+            }else{
+                text[i][q][z][p].b = cubeappo[q][z][p].b;
+            }
+          }
+        }
       }
     }
   }
@@ -106,23 +181,23 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
   for(int p=0; p<4; p++){
     for(int y=0; y<4; y++){
       if(p==0){
-        a.b ^= bits[i][j][x][y].b & matrix[p][y].b;
+        a.b ^= text[i][j][x][y].b & matrix[p][y].b;
       }
       if(p==1){
-        b.b ^= bits[i][j][x][y].b & matrix[p][y].b;
+        b.b ^= text[i][j][x][y].b & matrix[p][y].b;
       }
       if(p==2){
-        c.b ^= bits[i][j][x][y].b & matrix[p][y].b;
+        c.b ^= text[i][j][x][y].b & matrix[p][y].b;
       }
       if(p==3){
-        d.b ^= bits[i][j][x][y].b & matrix[p][y].b; 
+        d.b ^= text[i][j][x][y].b & matrix[p][y].b; 
       }
     }
   } 
 
-  bits[i][j][x][0].b = a.b;
-  bits[i][j][x][1].b = b.b;
-  bits[i][j][x][2].b = c.b;
-  bits[i][j][x][3].b = d.b;
+  text[i][j][x][0].b = a.b;
+  text[i][j][x][1].b = b.b;
+  text[i][j][x][2].b = c.b;
+  text[i][j][x][3].b = d.b;
 
 }
