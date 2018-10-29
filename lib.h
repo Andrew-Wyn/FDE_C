@@ -5,31 +5,39 @@
 
 typedef struct{
    unsigned int b : 1;
-} bit;
+} Bit;
 
 typedef struct{
    unsigned int b : 1;
-} vector[4];
+} Vector[4];
 
 typedef struct{
    unsigned int b : 1;
-} matrix[4][4];
+} Matrix[4][4];
 
 typedef struct{
    unsigned int b : 1;
-} cube[4][4][4];
+} Cube[4][4][4];
 
 typedef struct{
    unsigned int b : 1; // crea un unsigned int che contiene 1 solo bit (0 o 1);
-} fdimension[4][4][4][4]; //assegna sotto nome di fdimension un vettore in 4 dimensioni, contenente 64 vettori di lunghezza 4 (1 nibble);
+} Fdimension[4][4][4][4]; //assegna sotto nome di fdimension un vettore in 4 dimensioni, contenente 64 vettori di lunghezza 4 (1 nibble);
 
-fdimension text;
-fdimension key;
+Fdimension text;
+Fdimension key;
 
 char* getstringfromkeyboard();
 
-void putin(fdimension bits, char *str);
+void putin(Fdimension bits, char *str);
 
-void printbitseq(fdimension bits);
+void printbitseq(Fdimension bits);
 
-void shiftrows(fdimension bits);
+void shifbits(Fdimension bits, int i, int j, int x);
+
+void shiftrows(Fdimension bits);
+
+void shiftmatrix(Fdimension bits);
+
+void shiftcubes(Fdimension bits);
+
+void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x);
