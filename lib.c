@@ -80,69 +80,117 @@ void printbitseq(Fdimension bits){
 }
 
 //try to implement little function
-void shifbits(Fdimension bits, int i, int j, int x, _Bool cod){
-
-int app;
-  if(!cod){
-    app = 4-x;
-    printf("%d\n",app);
-  }
-    
+void shiftbits(Fdimension bits, int i, int j, int x, _Bool cod){
 
   Bit bit, bitappo;
 
-  for(int ii=0; ii<app; ii++){
-    for(int p=0; p<4; p++){
-      if(p==0){
-          bitappo.b = text[i][j][x][0].b;
+  if(cod){
+    for(int ii=0; ii<x; ii++){
+      for(int p=0; p<4; p++){
+        if(p==0){
+            bitappo.b = text[i][j][x][0].b;
+        }
+        if(p<3){
+            bit.b = text[i][j][x][p+1].b;
+            text[i][j][x][p].b = bit.b;
+        }else{
+            text[i][j][x][p].b = bitappo.b;
+        }
       }
-      if(p<3){
-          bit.b = text[i][j][x][p+1].b;
-          text[i][j][x][p].b = bit.b;
-      }else{
-          text[i][j][x][p].b = bitappo.b;
+    }
+  } else {
+    for(int ii=0; ii<4-x; ii++){
+      for(int p=0; p<4; p++){
+        if(p==0){
+            bitappo.b = text[i][j][x][0].b;
+        }
+        if(p<3){
+            bit.b = text[i][j][x][p+1].b;
+            text[i][j][x][p].b = bit.b;
+        }else{
+            text[i][j][x][p].b = bitappo.b;
+        }
       }
     }
   }
+  
 }
 
-void shiftrows(Fdimension bits, int i, int j){
+void shiftrows(Fdimension bits, int i, int j, _Bool cod){
 
   Vector vector, vectorappo;
 
-  for(int ii=0; ii<j; ii++){
-    for(int z=0; z<4; z++){
-      for(int p=0; p<4; p++){
-        if(z==0){
-            vectorappo[p].b = text[i][j][0][p].b;
+  if(cod){
+    for(int ii=0; ii<j; ii++){
+      for(int z=0; z<4; z++){
+        for(int p=0; p<4; p++){
+          if(z==0){
+              vectorappo[p].b = text[i][j][0][p].b;
+          }
+          if(z<3){
+              vector[p].b = text[i][j][z+1][p].b;
+              text[i][j][z][p].b = vector[p].b;
+          }else{
+              text[i][j][z][p].b = vectorappo[p].b;
+          }
         }
-        if(z<3){
-            vector[p].b = text[i][j][z+1][p].b;
-            text[i][j][z][p].b = vector[p].b;
-        }else{
-            text[i][j][z][p].b = vectorappo[p].b;
+      }
+    }
+  } else {
+    for(int ii=0; ii<4-j; ii++){
+      for(int z=0; z<4; z++){
+        for(int p=0; p<4; p++){
+          if(z==0){
+              vectorappo[p].b = text[i][j][0][p].b;
+          }
+          if(z<3){
+              vector[p].b = text[i][j][z+1][p].b;
+              text[i][j][z][p].b = vector[p].b;
+          }else{
+              text[i][j][z][p].b = vectorappo[p].b;
+          }
         }
       }
     }
   }
 }
 
-void shiftmatrix(Fdimension bits, int i){
+void shiftmatrix(Fdimension bits, int i, _Bool cod){
 
   Matrix matrix, matrixappo;
 
-  for(int ii=0; ii<i; ii++){
-    for(int q=0; q<4; q++){
-      for(int z=0; z<4; z++){
-        for(int p=0; p<4; p++){
-          if(q==0){
-              matrixappo[z][p].b = text[i][0][z][p].b;
+  if(cod){
+    for(int ii=0; ii<i; ii++){
+      for(int q=0; q<4; q++){
+        for(int z=0; z<4; z++){
+          for(int p=0; p<4; p++){
+            if(q==0){
+                matrixappo[z][p].b = text[i][0][z][p].b;
+            }
+            if(q<3){
+                matrix[z][p].b = text[i][q+1][z][p].b;
+                text[i][q][z][p].b = matrix[z][p].b;
+            }else{
+                text[i][q][z][p].b = matrixappo[z][p].b;
+            }
           }
-          if(q<3){
-              matrix[z][p].b = text[i][q+1][z][p].b;
-              text[i][q][z][p].b = matrix[z][p].b;
-          }else{
-              text[i][q][z][p].b = matrixappo[z][p].b;
+        }
+      }
+    }
+  } else {
+    for(int ii=0; ii<4-i; ii++){
+      for(int q=0; q<4; q++){
+        for(int z=0; z<4; z++){
+          for(int p=0; p<4; p++){
+            if(q==0){
+                matrixappo[z][p].b = text[i][0][z][p].b;
+            }
+            if(q<3){
+                matrix[z][p].b = text[i][q+1][z][p].b;
+                text[i][q][z][p].b = matrix[z][p].b;
+            }else{
+                text[i][q][z][p].b = matrixappo[z][p].b;
+            }
           }
         }
       }
@@ -150,23 +198,45 @@ void shiftmatrix(Fdimension bits, int i){
   }
 }
 
-void shiftcubes(Fdimension bits, int m){
+void shiftcubes(Fdimension bits, int m, _Bool cod){
 
   Cube cube, cubeappo;
 
-  for(int ii=0; ii<0; ii++){
-    for(int i=0; i<4; i++){
-      for(int q=0; q<4; q++){
-        for(int z=0; z<4; z++){
-          for(int p=0; p<4; p++){
-            if(i==0){
-                cubeappo[q][z][p].b = text[0][q][z][p].b;
+  if(cod){
+    for(int ii=0; ii<m; ii++){
+      for(int i=0; i<4; i++){
+        for(int q=0; q<4; q++){
+          for(int z=0; z<4; z++){
+            for(int p=0; p<4; p++){
+              if(i==0){
+                  cubeappo[q][z][p].b = text[0][q][z][p].b;
+              }
+              if(i<3){
+                  cube[q][z][p].b = text[i+1][q][z][p].b;
+                  text[i][q][z][p].b = cube[q][z][p].b;
+              }else{
+                  text[i][q][z][p].b = cubeappo[q][z][p].b;
+              }
             }
-            if(i<3){
-                cube[q][z][p].b = text[i+1][q][z][p].b;
-                text[i][q][z][p].b = cube[q][z][p].b;
-            }else{
-                text[i][q][z][p].b = cubeappo[q][z][p].b;
+          }
+        }
+      }
+    }
+  } else {
+    for(int ii=0; ii<m+1; ii++){
+      for(int i=0; i<4; i++){
+        for(int q=0; q<4; q++){
+          for(int z=0; z<4; z++){
+            for(int p=0; p<4; p++){
+              if(i==0){
+                  cubeappo[q][z][p].b = text[0][q][z][p].b;
+              }
+              if(i<3){
+                  cube[q][z][p].b = text[i+1][q][z][p].b;
+                  text[i][q][z][p].b = cube[q][z][p].b;
+              }else{
+                  text[i][q][z][p].b = cubeappo[q][z][p].b;
+              }
             }
           }
         }
@@ -177,7 +247,12 @@ void shiftcubes(Fdimension bits, int m){
 
 void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
   Bit a, b, c, d;
-
+  a.b = 0;
+  b.b = 0;
+  c.b = 0;
+  d.b = 0;
+  for(int y=0; y<4; y++){
+  }
   for(int p=0; p<4; p++){
     for(int y=0; y<4; y++){
       if(p==0){
@@ -200,4 +275,6 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
   text[i][j][x][2].b = c.b;
   text[i][j][x][3].b = d.b;
 
+  for(int y=0; y<4; y++){
+  }
 }
