@@ -25,6 +25,8 @@ typedef struct{
 
 Fdimension text;
 Fdimension key;
+Matrix linear_appl;
+Matrix r_linear_appl;
 
 char* getstringfromkeyboard();
 
@@ -42,6 +44,4 @@ void shiftcubes(Fdimension bits, int m, _Bool cod);
 
 void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x);
 
-Matrix linear_appl;
-
-Matrix r_linear_appl;
+void sumnextbit(Fdimension bits, int i, int j, int x, int y);

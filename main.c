@@ -79,11 +79,9 @@ int main(){
         shiftrows(text, i,j, true);
         /****************/
         for(int x=0; x<4; x++){
-          
-         
-          /****************/
+          //SHIFT
           shiftbits(text, i,j,x, true);
-
+          /****************/
           for(int y=0; y<4; y++){
             text[i][j][x][y].b ^= key[i][j][x][y].b;
 
@@ -178,30 +176,33 @@ int main(){
 
             //sumnext
             if(y<3){
-              text[i][j][x][y].b ^= text[i][j][x][y+1].b;
-            }           
+              
+            }
             /****************/
 
             text[i][j][x][y].b ^= key[i][j][x][y].b;
 
           }
 
-          
+          //SHIFT
+          shiftbits(text, i,j,x, false);
           /****************/
-        shiftbits(text, i,j,x, false);
         }
 
-    
+        //SHIFT
         shiftrows(text, i, j, false);
+        /****************/
       }
-      /****************/
    
-      /****************/
+      //SHIFT
       shiftmatrix(text, i, false);
+      /****************/
     }
     
-    /****************/
+    
+    //SHIFT
     shiftcubes(text, m, false);
+    /****************/
   }
 
   printbitseq(text);

@@ -251,8 +251,7 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
   b.b = 0;
   c.b = 0;
   d.b = 0;
-  for(int y=0; y<4; y++){
-  }
+
   for(int p=0; p<4; p++){
     for(int y=0; y<4; y++){
       if(p==0){
@@ -274,7 +273,8 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
   text[i][j][x][1].b = b.b;
   text[i][j][x][2].b = c.b;
   text[i][j][x][3].b = d.b;
+}
 
-  for(int y=0; y<4; y++){
-  }
+void sumnextbit(Fdimension bits, int i, int j, int x, int y){
+    
 }
