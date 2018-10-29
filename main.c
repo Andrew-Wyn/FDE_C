@@ -176,7 +176,7 @@ int main(){
 
             //sumnext
             if(y<3){
-              
+              sumnextbit(text, i, j, x, y);
             }
             /****************/
 

@@ -276,5 +276,5 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
 }
 
 void sumnextbit(Fdimension bits, int i, int j, int x, int y){
-  
+  text[i][j][x][y].b ^= text[i][j][x][y+1].b;
 }
