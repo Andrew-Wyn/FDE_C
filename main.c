@@ -63,10 +63,12 @@ int main(){
   str = getstringfromkeyboard();
   putin(key, str);
 
+  //printbitseq(text);
+
   for(int m=0; m<4; m++){
-   /* Cube cube, cubeappo;
+    Cube cube, cubeappo;
     //SHIFT
-    for(int ii=0; ii<m; ii++){
+    /*for(int ii=0; ii<0; ii++){
       for(int i=0; i<4; i++){
         for(int q=0; q<4; q++){
           for(int z=0; z<4; z++){
@@ -90,9 +92,9 @@ int main(){
 
     for(int i=0; i<4; i++){
       
-     /* Matrix matrix, matrixappo;
+      // matrix, matrixappo;
       //SHIFT
-      for(int ii=0; ii<i; ii++){
+      /*for(int ii=0; ii<0; ii++){
         for(int q=0; q<4; q++){
           for(int z=0; z<4; z++){
             for(int p=0; p<4; p++){
@@ -113,9 +115,9 @@ int main(){
       shiftmatrix(text, i, true);
       
       for(int j=0; j<4; j++){
-        /*
-         Vector vector, vectorappo;
-         for(int ii=0; ii<j; ii++){
+        
+        //Vector vector, vectorappo;
+        /*for(int ii=0; ii<0; ii++){
           for(int z=0; z<4; z++){
             for(int p=0; p<4; p++){
               if(z==0){
@@ -129,16 +131,14 @@ int main(){
               }
             }
           }
-          */
+        }*/
         shiftrows(text, i,j, true);
-        //}
-        
      
         for(int x=0; x<4; x++){
           
-          /* Bit bit, bitappo;
+          //Bit bit, bitappo;
           //SHIFT
-          for(int ii=0; ii<x; ii++){
+          /*for(int ii=0; ii<0; ii++){
             for(int p=0; p<4; p++){
               if(p==0){
                   bitappo.b = text[i][j][x][0].b;
@@ -152,7 +152,7 @@ int main(){
             }
           }*/
           /****************/
-          shifbits(text, i,j,x, true);
+          shiftbits(text, i,j,x, true);
 
           for(int y=0; y<4; y++){
             text[i][j][x][y].b ^= key[i][j][x][y].b;
@@ -202,7 +202,7 @@ int main(){
     }
   }
 
-  //printbitseq(text);
+  printbitseq(text);
 
   for(int m=0; m<4; m++){
 
@@ -212,7 +212,7 @@ int main(){
         for(int j=3; j>=0; j--){
           for(int x=3; x>=0; x--){
               for(int y=3; y>=0; y--){
-                  text[i][j][x][y].b ^= text[i+1][j][x][y].b;
+               text[i][j][x][y].b ^= text[i+1][j][x][y].b;
               }
           }
         }
@@ -224,7 +224,7 @@ int main(){
         if(j<3){
           for(int x=3; x>=0; x--){
               for(int y=3; y>=0; y--){
-                  text[i][j][x][y].b ^= text[i][j+1][x][y].b;
+                text[i][j][x][y].b ^= text[i][j+1][x][y].b;
               }
           }
         }
@@ -235,7 +235,7 @@ int main(){
           //sumnext
           if(x<3){
               for(int y=3; y>=0; y--){
-                text[i][j][x][y].b ^= text[i][j][x+1][y].b;
+               text[i][j][x][y].b ^= text[i][j][x+1][y].b;
               }
           }
           /****************/
@@ -255,10 +255,10 @@ int main(){
             text[i][j][x][y].b ^= key[i][j][x][y].b;
 
           }
-          /*
-          Bit bit, bitappo;
+          
+          //Bit bit, bitappo;
           //SHIFT
-          for(int ii=0; ii<4-x; ii++){
+          /*for(int ii=0; ii<0; ii++){
             for(int p=0; p<4; p++){
               if(p==0){
                   bitappo.b = text[i][j][x][0].b;
@@ -270,15 +270,15 @@ int main(){
                   text[i][j][x][p].b = bitappo.b;
               }
             }
-          }
-          */
+          }*/
+          
           /****************/
-        shifbits(text, i,j,x, false);
-        //}
+        shiftbits(text, i,j,x, false);
+        }
 
-        /*Vector vector, vectorappo;
+        //Vector vector, vectorappo;
         //SHIFT
-        for(int ii=0; ii<4-j; ii++){
+        /*for(int ii=0; ii<0; ii++){
           for(int z=0; z<4; z++){
             for(int p=0; p<4; p++){
               if(z==0){
@@ -292,13 +292,13 @@ int main(){
               }
             }
           }
-        }
-      }*/
+        }*/
+        shiftrows(text, i, j, false);
+      }
       /****************/
-      shiftrows(text, i, j, false);
-      /*Matrix matrix, matrixappo;
+      //Matrix matrix, matrixappo;
       //SHIFT
-      for(int ii=0; ii<4-i; ii++){
+      /*for(int ii=0; ii<0; ii++){
         for(int q=0; q<4; q++){
           for(int z=0; z<4; z++){
             for(int p=0; p<4; p++){
@@ -317,12 +317,12 @@ int main(){
       }*/
       /****************/
       shiftmatrix(text, i, false);
-    //}
+    }
     
-    /*Cube cube, cubeappo;
+    //Cube cube, cubeappo;
       
     //SHIFT
-    for(int ii=0; ii<m+1; ii++){
+    /*for(int ii=0; ii<0; ii++){
       for(int i=0; i<4; i++){
         for(int q=0; q<4; q++){
           for(int z=0; z<4; z++){
@@ -349,6 +349,3 @@ int main(){
 
   return 0;
 }
-    }
-    
-  }

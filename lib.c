@@ -53,7 +53,7 @@ void putin(Fdimension bits, char *str){
         for(int i=0; i<4; i++){
           int appo = a;
           appo >>= i;
-          (bits[x][y][(j+1)+(j>>2-j)][i]).b = appo; // uno schifo per l'indice ma non ho trovato di meglio
+          (bits[x][y][(j+1)+(j>>1-j)][i]).b = appo; // uno schifo per l'indice ma non ho trovato di meglio
         }
       }
     }
