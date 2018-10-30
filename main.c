@@ -87,7 +87,7 @@ int main(){
 
             //sumnext
             if(y<3){
-              text[i][j][x][y].b ^= text[i][j][x][y+1].b;
+              sumnextbit(text, i, j, x, y);
             }           
             /****************/
           }
