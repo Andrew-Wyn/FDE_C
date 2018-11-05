@@ -45,3 +45,5 @@ void shiftcubes(Fdimension bits, int m, _Bool cod);
 void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x);
 
 void sumnextbit(Fdimension bits, int i, int j, int x, int y);
+
+void putout(Fdimension text);

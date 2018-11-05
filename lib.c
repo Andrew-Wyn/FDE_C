@@ -2,7 +2,7 @@
 
 char* getstringfromkeyboard(){ //la funzione prende le stringhe inserite da tastiera (massimo 32 caratteri e le inserisce all'interno del puntatore *str)
     char *str = (char *)malloc(1);
-     
+
     int chars = 0;
     _Bool boo = true;
 
@@ -113,7 +113,7 @@ void shiftbits(Fdimension bits, int i, int j, int x, _Bool cod){
       }
     }
   }
-  
+
 }
 
 void shiftrows(Fdimension bits, int i, int j, _Bool cod){
@@ -264,10 +264,10 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
         c.b ^= text[i][j][x][y].b & matrix[p][y].b;
       }
       if(p==3){
-        d.b ^= text[i][j][x][y].b & matrix[p][y].b; 
+        d.b ^= text[i][j][x][y].b & matrix[p][y].b;
       }
     }
-  } 
+  }
 
   text[i][j][x][0].b = a.b;
   text[i][j][x][1].b = b.b;
@@ -277,4 +277,28 @@ void vmmoltiplication(Fdimension bits, Matrix matrix, int i, int j, int x){
 
 void sumnextbit(Fdimension bits, int i, int j, int x, int y){
   text[i][j][x][y].b ^= text[i][j][x][y+1].b;
+}
+
+void putout(Fdimension text){ // NON FUNZIONAAAAAA!
+  char appo = '0';
+  int c=0;
+            printf("%c %i\n", appo, c);
+
+  for(int i=0; i<4; i++){
+    for(int j=0; j<4; j++){
+      for(int z=0; z<4; z++){:
+        for(int k=0; k<4; k++){
+          appo ^= text[i][j][z][k].b;
+          c++;
+          printf("%c %i\n", appo, c);
+          if(c==8){
+            printf("%c",appo);
+            c=0;
+          }
+          appo >>= 1;
+        }
+      }
+    }
+  }
+
 }

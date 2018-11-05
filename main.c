@@ -63,6 +63,8 @@ int main(){
   str = getstringfromkeyboard();
   putin(key, str);
 
+  putout(text);
+
   //printbitseq(text);
 
   for(int m=0; m<4; m++){
@@ -130,7 +132,7 @@ int main(){
     }
   }
 
-  printbitseq(text);
+  //printbitseq(text);
 
   for(int m=0; m<4; m++){
 
@@ -205,7 +207,7 @@ int main(){
     /****************/
   }
 
-  printbitseq(text);
+  //printbitseq(text);
 
   return 0;
 }
